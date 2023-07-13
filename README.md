@@ -62,12 +62,13 @@ SAM (Sagment Anything Model)이란 무엇인지는 ([참고 자료](https://etha
 
 <br>
 
-파라미터| 원본 데이터 (개) |
----|------------|
-batch| 16         |
-epochs| 300        |
-workers| 0          |
-imgsz| 1,024      |
+param | index |
+---|-------|
+batch| 16    |
+epochs| 300   |
+workers| 0     |
+imgsz| 1,024 |
+
 
 <br>
 
