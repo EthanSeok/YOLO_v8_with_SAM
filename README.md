@@ -3,6 +3,8 @@
 
 <br>
 
+**프로젝트의 더 자세한 내용은 [https://ethanseok.github.io/2023-07-04/yolo_v8_pest-post](https://ethanseok.github.io/2023-07-04/yolo_v8_pest-post) 참고** 
+
 참고 링크 (GitHub):  
 [SAM-annotator](https://github.com/haochenheheda/segment-anything-annotator)  
 [YOLO v8](https://github.com/ultralytics/ultralytics)
