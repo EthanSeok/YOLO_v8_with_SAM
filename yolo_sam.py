@@ -33,7 +33,7 @@ def prepare_image(image, transform, device):
 def main():
     model = YOLO('./notebooks/best.pt')
     img_name = '20220824-171308.png'
-    img = cv2.imread('{img_name}')
+    img = cv2.imread(f'{img_name}')
 
     results = model.predict(source=img, save=True)
     print(results)
@@ -59,6 +59,7 @@ def main():
     model_type = "vit_h"
 
     device = "cuda"
+    device = "cpu"
 
     sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
     sam.to(device=device)
