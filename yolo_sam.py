@@ -1,5 +1,4 @@
 import os
-
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
@@ -7,6 +6,7 @@ import cv2
 from ultralytics import YOLO
 from segment_anything import sam_model_registry, SamPredictor
 from segment_anything.utils.transforms import ResizeLongestSide
+import tqdm
 
 
 def show_mask(mask, ax, random_color=False):
@@ -29,11 +29,9 @@ def prepare_image(image, transform, device):
     image = torch.as_tensor(image, device=device.device)
     return image.permute(2, 0, 1).contiguous()
 
-
-def main():
-    model = YOLO('./notebooks/best.pt')
-    img_name = '20220824-171308.png'
-    img = cv2.imread(f'{img_name}')
+def run(img, img_name):
+    model = YOLO('./model/best.pt')
+    # img_name = '20220824-171308.png'
 
     results = model.predict(source=img, save=True)
     print(results)
@@ -58,7 +56,7 @@ def main():
     sam_checkpoint = "./model/sam_vit_h_4b8939.pth"
     model_type = "vit_h"
 
-    device = "cuda"
+    # device = "cuda"
     device = "cpu"
 
     sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
@@ -92,6 +90,13 @@ def main():
         os.makedirs('./output')
 
     plt.savefig(f'./output/{img_name}')
+
+def main():
+    img_list = [x for x in os.listdir('./images/') if x.endswith('png') or x.endswith('jpg') or  x.endswith('JPG')]
+
+    for img_name in img_list:
+        img = cv2.imread(f'./images/{img_name}')
+        run(img, img_name)
 
 if __name__=='__main__':
     main()
